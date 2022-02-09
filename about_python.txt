@@ -1,0 +1,175 @@
+Naming Convention :
+    Snake Case
+
+Indent :
+    4 space
+
+Type hint:
+    ex) def func(a: str) -> int:
+    type hint is not strict
+
+List Comprehension:
+    when making list or dictionary, make it easy and convenient
+    [n * 2 for n in range(1, 10 + 1) if n % 2 ==1]
+    a = {key: value for key, value in original.items()}
+
+Generator :
+    as a routine type, can control Iteration of loop
+    as using yield, you can return generator
+
+range :
+    a function that use generator
+    range(5) -> return [0,4]
+    a = [n for n in range(10000)] vs b = range(10000):
+        in a, there are already created values
+        In contrast, in b, there is a condition which is supposed to create
+
+enumerate:
+    a function that makes enumerate class with index
+    ex) for i, v in enumerate(a): #a : [5, 5, 5]
+            print(i, v)
+        -> (0, 5) (1, 5) (2, 5)
+
+// :
+    an operator. can get a Quotient
+    5 // 3 -> 1
+    * divmod(5, 3) -> (1, 2) (Quotient, Remainder)
+
+usage print():
+    print(1, 2) -> 1 2
+
+    print(1, 2, sep=',') -> 1,2
+
+    print(1, end=' ')
+    print(2)   -> 1 2
+
+    a = ['A', 'B']
+    print(' '.join(a)) -> A B
+
+    idx = 1
+    fruit = "apple"
+
+    print('{0}: {1}'.format(idx + 1, fruit)) -> 2: apple
+
+    print('{}: {}'.format(idx + 1, fruit)) -> 2: apple
+
+    print(f'{idx + 1}: {fruit}') -> 2: apple +3.6ver
+
+pass :
+    Null operation.
+    for blocking indent error
+    def to_create_later():
+        pass
+
+locals :
+    a function that shows all local variable values in method
+    print(locals())
+
+자료형 :
+    숫자 ver3 :
+    파이썬은 숫자 정수형으로 int만을 제공한다. int는 임의 정밀도를 지원하며,
+    더 이상 파이썬에서 고정 정밀도는 지원하지 않게 되었다.
+    bool은 엄밀히 따지면 논리 자료형인데 파이썬 내부에서는 1과 0으로 처리되는
+    int의 서브 클래스다. int는 object의 하위 클래스이기도 하기 때문에 결국
+    다음과 같은 구조다
+    object > int > bool
+    임의 정밀도란?
+        임의 정밀도 정수형이란 쉽게 말해 무제한 자릿수르 제공하는 정수형이다.
+        이는 정수를 숫자의 배열로 간주해서 만들 수 있다. 당연하게도 이는
+        계산 속도의 저하로 이어진다.
+
+    매핑:
+    매핑 타입은 키와 자료형으로 구성된 복합 자료형이며, 파이썬에 내장된 유일한
+    매핑 자료형은 딕셔너리다.
+
+    집합:
+    파이썬의 집합 자료형인 set은 중복된 값을 갖지 않는 자료형이다. 집합은
+    딕셔너리와 동일하게 중괄호를 사용하므로 이 점을 유의해야 한다. 이는
+    선언 방식에 차이가 있으니 쉽게 구분할 수 있다. 이를 통해 파이썬은
+    타입 결정을 자동으로 한다는 것을 알 수 있다.
+
+    시퀀스:
+    시퀀스는 우리말로 하면 '수열'같은 의미로, 어떤 특정 대상의 순서 있는
+    나열을 뜻한다. 시퀀스에는 str, tuple, bytes, list 자료형이 있는데
+    list를 제외한 세가지는 불변이고 list는 가변이다.
+
+    객체:
+    파이썬은 모든 것이 객체다. 이 중에서 크게 가변 객체와 불변 객체로
+    나눌 수 있다.
+    bool 불변 int 불변 float 불변 list 가변 tuple 불변
+    str 불변 set 가변 dict 가변
+    파이썬에서 변수를 할당하는 작업은 해당 객체에 대해 참조 한다는 의미다.
+
+    is vs ==:
+        is는 id()값을 비교하는 함수다. ==는 값을 비교하는 함수다.
+
+리스트, 딕셔너리:
+    리스트:
+    리스트는 말 그대로 순서대로 저장하는 시퀀스이자 변경 가능한 목록을
+    말한다. 입력 순서가 유지되며, 내부적으로 동적 배열로 구현되어 있다.
+    스택과 큐에서 사용 가능한 모든 연산을 제공한다.
+    리스트의 연산과 시간 복잡도
+    len(a)      O(1)      요소의 개수 리턴
+    a[i]        O(1)      인덱스 i의 요소
+    a[i:j]      O(k)      i부터 j까지 슬라이스의 길이만큼인 k개의 요소를 가져온다
+                          j는 포함되지 않는다.
+    e in a      O(n)      e 요소가 존재하는지 확인
+    a.count(e)  O(n)      e 요소의 개수를 리턴
+    a.index(e)  O(n)      e 요소의 인덱스를 리턴
+    a.append(e) O(1)      리스트 마지막에 e 추가
+    a.pop()     O(1)      리스트 마지막 요소를 추출. 스택의 연산
+    a.pop(0)    O(n)      리스트 첫번째 요소를 추출. 큐의 연산
+                          큐의 연산을 주로 사용한다면 데크를 사용한다.
+    del a[i]    O(n)      인덱스 i의 요소를 삭제
+    a.sort()    O(nlogn)  정렬한다. 팀소트를 사용한다. 최선의 경우 O(n)에 실행한다.
+    min(a)      O(n)      최솟값 리턴
+    max(a)      O(n)      최댓값 리턴
+    a.reverse() O(n)      뒤집는다.
+
+    활용 방법:
+    a = list() or a = [] 으로 선언한다.
+    a = [1, 2, 3] 으로 초깃값을 지정해 선언할 수 있다.
+    a.append()나 insert(index, value)로 추가할 수 있다.
+    다양한 자료형을 단일 리스트에서 관리할 수 있다.
+    존재하지 않는 인덱스를 조회할 경우 IndexError가 발생한다.
+    del a[i]이나 a.remove(value)를 사용해 요소를 삭제한다.
+
+    딕셔너리:
+    키/값 구조로 이뤄진 딕셔너리를 말한다. 파이썬 3.7+에서는
+    입력 순서가 유지되며, 내부적으로는 해시 테이블로 구현되어 있다.
+    인덱스를 숫자로만 지정할 수 있는 리스트와 달리 딕셔너리는
+    문자를 포함해 다양한 타입을 키로 사용할 수 있다. 심지어,
+    집합까지 불변 객체를 모두 키로 사용할 수 있다.
+    딕셔너리의 주요 연산 시간 복잡도
+    len(a)      O(1)      요소의 개수를 리턴
+    a[key]      O(1)      키를 조회하여 값을 리턴
+    a[key] = v  O(1)      키/값을 삽입한다.
+    key in a    O(1)      딕셔너리에 키가 존재하는지 확인
+
+    3.6이하 버전에서는 입력 순서가 유지되지 않아 colletions.
+    OrderedDict()라는 별도 자료형을 사용했다.
+
+    활용 방법:
+    a = dict() or a = {}로 선언할 수 있다.
+    a = {'key1':'value1','key2':'value2'}로 초깃값을
+    선언할 수 있고 a['key3'] = 'value3'으로 추가 할당한다.
+    존재하지 않는 키를 조회할 경우 keyError가 발생한다.
+    for k,v in a.items()로 전체 키/값 조회가 가능하다.
+    삭제는 del a['key']로 삭제한다.
+
+    모듈: defaultdict, Counter, OrderedDict
+    defaultdict 객체는 존재하지 않는 키를 조회할 경우,
+    에러메시지를 출력하지 않고 디폴트 값을 기준으로
+    해당 키에 대한 아이템을 생성해준다.
+
+    Counter 객체는 주로 배열을 통해 생성되며 키에는 아이템
+    값이 들어가고 값에는 아이템의 개수가 들어간다.
+    개수를 계산하고 싶을 때 사용한다.
+
+    OrederedDict 객체는 입력 순서가 유지되는 딕셔너리를
+    만든다. 하위 호환을 위해 남겨져 있다.
+
+
+
+
+
